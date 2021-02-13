@@ -8,6 +8,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button butDima;
     Button butPetya;
     Button butSerg;
-
+    Vibrator vibro;
 
     private SoundPool mSoundPool;
     private int mStreamId;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     int vFin;
     int v_sec;
     int v_alarm_time = 10;
+
 
     private void myPlaySound(int pFileId  ){
 
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         Integer v_curr_val = Integer.valueOf(getDataFromPref(String.valueOf(v.getId())));
         Button pointerButton = (Button) v;
         TextView pointerTv = null;
-
+        vibro.vibrate(50);
         if(!b_first_load) { v_curr_val++;}
 
         if(v_curr_val > 20){
@@ -93,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
             pointerTv =  (TextView)findViewById(R.id.tv_petya);
         }
         if((v.getId()) == R.id.button5)
-        { pointerTv =  (TextView)findViewById(R.id.tv_serg);}
+        {
+            pointerTv =  (TextView)findViewById(R.id.tv_serg);
+        }
         if (pointerTv != null) {
             pointerTv.setText(v_curr_val_str);
         }
@@ -109,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        vibro  = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
 
         pref = getSharedPreferences("t1", MODE_PRIVATE);
 
