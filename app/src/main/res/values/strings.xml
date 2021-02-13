@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CDtimer</string>
+    <string name="tvCouter">0</string>
+    <string name="myBut">Re-start</string>
+ <!--   <string name="myText">3</string>-->
+</resources>
